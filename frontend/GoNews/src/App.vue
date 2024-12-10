@@ -1,25 +1,28 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div id="app">
+    <Navbar />
+    <router-view />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import Navbar from './components/Navbar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Navbar,
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Arial, sans-serif;
+  margin: 20px;
 }
 
 .logo {
