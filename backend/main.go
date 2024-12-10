@@ -11,8 +11,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const apiKey = "" // Replace with your NewsAPI key
-const newsAPIURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
+const newsAPIURL = "https://newsapi.org/v2/top-headlines?"
 
 type NewsResponse struct {
 	Status       string    `json:"status"`
@@ -49,13 +48,19 @@ func fetchNewsHandler(w http.ResponseWriter, r *http.Request) {
 		lang = "en" // Default to English
 	}
 
+	country := r.URL.Query().Get("cat")
+	if country == "" {
+		country = "us" // Default to USA
+	}
+
 	apiKey := os.Getenv("NEWS_API_KEY")
 	if apiKey == "" {
 		http.Error(w, "API key not set", http.StatusInternalServerError)
 		return
 	}
 
-	url := fmt.Sprintf("%s%s&language=%s", newsAPIURL, apiKey, lang)
+	url := fmt.Sprintf("%sapikey=%s&language=%s&country=%s", newsAPIURL, apiKey, lang, country)
+	fmt.Println(url)
 
 	response, err := http.Get(url)
 	if err != nil {

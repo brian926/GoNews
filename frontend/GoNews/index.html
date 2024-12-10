@@ -39,6 +39,12 @@
         <option v-for="lang in languages" :value="lang.value" :key="lang.value">{{ lang.label }}</option>
       </select>
     </div>
+    <div>
+      <label for="category">Select Category:</label>
+      <select id="category" v-model="selectedCountry" @change="fetchNews">
+        <option v-for="cat in countries" :value="cat.value" :key="cat.value">{{ cat.label }}</option>
+      </select>
+    </div>
     <div v-if="loading">Loading news...</div>
     <div v-if="error">{{ error }}</div>
     <div v-if="articles.length > 0">
@@ -58,6 +64,16 @@
           articles: [],
           loading: false,
           error: null,
+          selectedCountry: "United States", // Default language
+          countries: [
+            { value: "br", label: "Brazil" },
+            { value: "co", label: "Colombia" },
+            { value: "es", label: "Spain" },
+            { value: "mx", label: "Mexico" },
+            { value: "mz", label: "Mozambique" },
+            { value: "pr", label: "Puerto Rico" },
+            { value: "us", label: "United States" },
+          ],
           selectedLanguage: "en", // Default language
           languages: [
             { value: "en", label: "English" },
@@ -73,7 +89,7 @@
           this.loading = true;
           this.error = null;
           try {
-            const response = await fetch(`http://localhost:5432/news?lang=${this.selectedLanguage}`);
+            const response = await fetch(`http://localhost:5432/news?lang=${this.selectedLanguage}&cat=${this.selectedCountry}`);
             if (!response.ok) {
               throw new Error("Failed to fetch news.");
             }
