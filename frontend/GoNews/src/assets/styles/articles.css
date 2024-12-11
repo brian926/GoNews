@@ -1,66 +1,65 @@
-/* article.css */
-.article-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    /* Grid with flexible columns */
-    gap: 20px;
-    /* Space between items */
-    margin-top: 80px;
-    /* Prevent content from being hidden under fixed navbar */
-}
-
-.article {
-    background-color: #fff;
-    border-radius: 10px;
-    /* Rounded corners for the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Soft shadow for a card-like effect */
-    padding: 20px;
+/* Container for the articles */
+.article-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    /* Space between articles */
+    padding: 20px;
 }
 
-.article h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Each article in the list */
+.article-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-.article p {
-    margin: 10px 0;
-    color: #555;
-    /* Slightly darker text for readability */
+.article-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.article a {
-    color: #007bff;
-    /* Blue link color */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+/* Thumbnail for the article */
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
 }
 
-.article a:hover {
-    color: #0056b3;
-    /* Darker blue on hover */
+/* Details section */
+.article-details {
+    display: flex;
+    flex-direction: column;
 }
 
-.article img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    /* Rounded corners for images */
-}
-
-.article .description {
+.title {
     font-size: 1rem;
-    color: #777;
-    line-height: 1.5;
+    font-weight: bold;
+    margin: 0 0 5px;
 }
 
-.article-footer {
-    text-align: right;
+.title a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+.description {
     font-size: 0.9rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.meta {
+    font-size: 0.8rem;
     color: #888;
 }

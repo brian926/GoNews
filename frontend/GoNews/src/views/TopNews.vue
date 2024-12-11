@@ -15,10 +15,15 @@
     </div>
     <div v-if="loading">Loading news...</div>
     <div v-if="error">{{ error }}</div>
-    <div v-if="articles.length > 0">
-      <div v-for="article in articles" :key="article.url" class="article">
-        <h2><a :href="article.url" target="_blank">{{ article.title }}</a></h2>
-        <p>{{ article.description || 'No description available' }}</p>
+    <div v-if="articles.length > 0" class="article-list">
+      <div v-for="article in articles" :key="article.link" class="article-item">
+        <img :src="article.image_url || 'https://via.placeholder.com/80x80'" :alt="article.title" class="thumbnail" />
+        <div class="article-details">
+          <h2 class="title">
+            <a :href="article.link" target="_blank">{{ article.title }}</a>
+          </h2>
+          <p class="description">{{ article.description || 'No description available' }}</p>
+        </div>
       </div>
     </div>
   </div>
